@@ -1,6 +1,7 @@
 #workDay {
     color: black;
     text-shadow: -2px 0 gold, 0 2px gold, 2px 0 gold, 0 -2px gold;
+    font-size: 4.5vw;
 }
 #wrapWorkDay {
     text-align: center;
@@ -8,10 +9,19 @@
 body {
     background-color: #800020;
 }
-.noMargin {
-    margin: 0 auto !important;
-}
 .time {
     color: gold;
-    font-size: 3vw;
+    font-size: 2vw;
+    text-shadow: -2.5px 0 black, 0 2.5px black, 2.5px 0 black, 0 -2.5px black;
+}
+.btn {
+    background-color: gold;
+    color: black;
+}
+.btn:hover {
+    background-color: #800020;
+}
+.hourSlot {
+    text-shadow: -0.5px 0 gold, 0 0.5px gold, 0.5px 0 gold, 0 -0.5px gold;
+    font-weight: bold;
 }
