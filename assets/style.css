@@ -25,3 +25,11 @@ body {
     text-shadow: -0.5px 0 gold, 0 0.5px gold, 0.5px 0 gold, 0 -0.5px gold;
     font-weight: bold;
 }
+input[type=text] {
+    font-family: "Oxanium", cursive;
+    font-weight: bolder;
+    color: gold;
+}
+input[type=text]:focus {
+    color:gold;
+}
