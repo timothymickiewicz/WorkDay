@@ -1,39 +1,48 @@
 // Assigning variables
-var day = moment().format("dddd") + " " + moment().format("h:mm:ss a");
-var hour = moment().add(-6, 'hour').format("h:mm:ss a")
-var hour2 = moment().add(-5, 'hour').format("h:mm:ss a")
-var hour3 = moment().add(-4, 'hour').format("h:mm:ss a")
-var hour4 = moment().add(-3, 'hour').format("h:mm:ss a")
-var hour5 = moment().add(-2, 'hour').format("h:mm:ss a")
-var hour6 = moment().add(-1, 'hour').format("h:mm:ss a")
-var hour7 = moment().add(0, 'hour').format("h:mm:ss a")
-var hour8 = moment().add(1, 'hour').format("h:mm:ss a")
-var hour9 = moment().add(2, 'hour').format("h:mm:ss a")
-var hour10 = moment().add(3, 'hour').format("h:mm:ss a")
-var hour11 = moment().add(4, 'hour').format("h:mm:ss a")
-var hour12 = moment().add(5, 'hour').format("h:mm:ss a")
-var hour13 = moment().add(6, 'hour').format("h:mm:ss a")
-var input ="";
-// Getting time onto page
+var body = $("body");
+var container = $(".container");
+var newDiv = $("<div></div>");
+var newInput = $("<input></input>");
+var day = moment().format("dddd") + " " + moment().format("h:mm a");
+var hourCount = 0;
+
+for (i=0; i < 12; i++) {
+  // Re-creating Bootstrap in a for loop, selecting each instance of each element per iteration and appending to them the succeeding elements
+  hourCount ++;
+  container.append($("<div></div>").addClass("row"));
+  $(".row:eq(" + i + ")").append($("<div></div>").addClass("col-md-1"), $("<div>").addClass("col-md-10"), $("<div></div>").addClass("col-md-1"));
+  $(".col-md-10:eq(" + i + ")").append($("<div></div>").addClass("hourSlot"), $("<div>").addClass("input-group mb-3"));
+  $(".mb-3:eq(" + i + ")").append($("<div>").addClass("input-group-prepend"), $("<input>").addClass("form-control").attr("type", "text").attr("aria-label", "Text input with checkbox"));
+  $(".input-group-prepend:eq(" + i + ")").append($("<input>").addClass("btn btn-primary").attr("type", "submit").attr("value", "Save"));
+  $(".hourSlot:eq(" + i + ")").append(moment().add(i - 3, "hour").format("h a"));
+  if (hourCount <= 3) {
+    $(".form-control:eq(" + i + ")").css("background-color", "red")
+  }
+  else if (hourCount == 4) {
+    $(".form-control:eq(" + i + ")").css("background-color", "green")
+  }
+  else if (hourCount > 4) {
+    $(".form-control:eq(" + i + ")").css("background-color", "blue")
+  }
+};
+// Establishing local storage variables
+var input = "";
+var inputArray = [];
+// Getting date/time onto page
 $("#wrapWorkDay").append("<p></p>");
 $("p:first").append(day);
 $("p:first").addClass("time");
-$(".hourSlot:eq(0)").append(hour);
-$(".hourSlot:eq(1)").append(hour2);
-$(".hourSlot:eq(2)").append(hour3);
-$(".hourSlot:eq(3)").append(hour4);
-$(".hourSlot:eq(4)").append(hour5);
-$(".hourSlot:eq(5)").append(hour6);
-$(".hourSlot:eq(6)").append(hour7);
-$(".hourSlot:eq(7)").append(hour8);
-$(".hourSlot:eq(8)").append(hour9);
-$(".hourSlot:eq(9)").append(hour10);
-$(".hourSlot:eq(10)").append(hour11);
-$(".hourSlot:eq(11)").append(hour12);
-$(".hourSlot:eq(12)").append(hour13);
+// Saving the tasks to local storage on save click
 $(".btn").click(function() {
-    input = $(":text").val()
-    localStorage.setItem("tasks", input);
+    input = $(":text").val();
+    console.log(input);
+    inputArray = inputArray.push(input);
+    console.log(inputArray[0]);
+    localStorage.setItem("tasks", JSON.stringify(inputArray));
+    parsedArray = JSON.parse(localStorage.getItem("tasks"));
   });
+// Get local storage to paste back to the line it came from, tracking its hour
+// Get lines background colors to change based on due times
+
 
 
